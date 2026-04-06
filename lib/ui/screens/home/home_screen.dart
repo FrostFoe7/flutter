@@ -9,7 +9,7 @@ import 'package:threads/ui/widgets/widgets.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomeTabBar extends StatefulWidget {
-  const HomeTabBar({Key? key}) : super(key: key);
+  const HomeTabBar({super.key});
 
   @override
   State<HomeTabBar> createState() => _HomeTabBarState();

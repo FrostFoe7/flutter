@@ -8,15 +8,15 @@ import 'package:threads/ui/widgets/user_widget.dart';
 import 'package:threads/ui/widgets/widgets.dart';
 
 class SearchTab extends StatefulWidget {
-  const SearchTab({Key? key}) : super(key: key);
+  const SearchTab({super.key});
 
   @override
   State<SearchTab> createState() => _SearchTabState();
 }
 
 class _SearchTabState extends State<SearchTab> with TickerProviderStateMixin {
-  var animation;
-  var controller;
+  late Animation<double> animation;
+  late AnimationController controller;
   List<UserModel> userData = findUsers();
 
   @override

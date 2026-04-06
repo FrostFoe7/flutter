@@ -17,7 +17,7 @@ class AppsButton extends StatelessWidget {
   final void Function()? onTapDisabled;
 
   const AppsButton({
-    Key? key,
+    super.key,
     this.text,
     this.prefixIcon,
     this.suffixIcon,
@@ -29,7 +29,7 @@ class AppsButton extends StatelessWidget {
     this.onTapDisabled,
     this.enabled = true,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

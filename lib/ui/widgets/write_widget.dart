@@ -14,9 +14,7 @@ class WriteWidget extends StatelessWidget {
         heightFactor: 1,
         child: Container(
           padding: EdgeInsets.only(
-              top: MediaQueryData.fromWindow(
-            WidgetsBinding.instance.window,
-          ).padding.top),
+              top: MediaQuery.paddingOf(context).top),
           child: Column(
             children: [
               Padding(

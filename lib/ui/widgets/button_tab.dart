@@ -5,7 +5,7 @@ const double _kTabHeight = 46.0;
 
 class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
   ButtonsTabBar({
-    Key? key,
+    super.key,
     required this.tabs,
     this.controller,
     this.duration = 250,
@@ -28,7 +28,7 @@ class ButtonsTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.height = _kTabHeight,
     this.center = false,
     this.onTap,
-  }) : super(key: key) {
+  }) {
     assert(backgroundColor == null || decoration == null);
     assert(unselectedBackgroundColor == null || unselectedDecoration == null);
   }
@@ -271,7 +271,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
     super.dispose();
   }
 
-  _getCenterPadding(BuildContext context) {
+  void _getCenterPadding(BuildContext context) {
     // get the screen width. This is used to check if we have an element off screen
     final RenderBox tabsParent =
         _tabsParentKey.currentContext!.findRenderObject() as RenderBox;
@@ -346,12 +346,12 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
           if (widget.onTap != null) widget.onTap!(index);
         },
         style: ButtonStyle(
-            elevation: MaterialStateProperty.all(widget.elevation),
-            minimumSize: MaterialStateProperty.all(const Size(40, 40)),
-            padding: MaterialStateProperty.all(EdgeInsets.zero),
-            textStyle: MaterialStateProperty.all(textStyle),
+            elevation: WidgetStateProperty.all(widget.elevation),
+            minimumSize: WidgetStateProperty.all(const Size(40, 40)),
+            padding: WidgetStateProperty.all(EdgeInsets.zero),
+            textStyle: WidgetStateProperty.all(textStyle),
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 side: (widget.borderWidth == 0)
                     ? BorderSide.none
@@ -363,7 +363,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
                 borderRadius: BorderRadius.circular(widget.radius),
               ),
             ),
-            overlayColor: MaterialStateProperty.all(widget.splashColor)),
+            overlayColor: WidgetStateProperty.all(widget.splashColor)),
         child: Ink(
           decoration: boxDecoration,
           child: Container(
@@ -436,8 +436,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
     );
   }
 
-  // runs during the switching tabs animation
-  _handleTabAnimation() {
+  void _handleTabAnimation() {
     _aniIndex = ((_controller!.animation!.value > _prevAniValue)
             ? _controller!.animation!.value
             : _prevAniValue)
@@ -448,14 +447,14 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
     _prevAniValue = _controller!.animation!.value;
   }
 
-  _goToIndex(int index) {
+  void _goToIndex(int index) {
     if (index != _currentIndex) {
       _setCurrentIndex(index);
       _controller?.animateTo(index);
     }
   }
 
-  _setCurrentIndex(int index) {
+  void _setCurrentIndex(int index) {
     // change the index
     setState(() {
       _prevIndex = _currentIndex;
@@ -465,7 +464,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
     _triggerAnimation();
   }
 
-  _triggerAnimation() {
+  void _triggerAnimation() {
     // reset the animation so it's ready to go
     _animationController.reset();
 
@@ -473,7 +472,7 @@ class _ButtonsTabBarState extends State<ButtonsTabBar>
     _animationController.forward();
   }
 
-  _scrollTo(int index) {
+  void _scrollTo(int index) {
     // get the screen width. This is used to check if we have an element off screen
     final RenderBox tabsContainer =
         _tabsContainerKey.currentContext!.findRenderObject() as RenderBox;
