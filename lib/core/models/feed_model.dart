@@ -12,6 +12,8 @@ class FeedModel {
   final bool isFollow;
   List<UserLikes>? userLikes;
 
+  List<FeedModel>? repliesList;
+
   FeedModel({
     required this.name,
     required this.profile,
@@ -25,6 +27,7 @@ class FeedModel {
     this.isRepost = false,
     this.isFollow = false,
     this.userLikes,
+    this.repliesList,
   });
 
   static FeedModel fromJson(Map<String, dynamic> json) {

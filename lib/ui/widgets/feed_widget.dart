@@ -54,7 +54,53 @@ class FeedWidget extends StatelessWidget {
                                 ),
                               ),
                               4.width,
-                              Assets.icons.threeDots.image(width: 30)
+                              InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
+                                    ),
+                                    builder: (context) {
+                                      return Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            _buildMenuOption(
+                                                context, 'Report',
+                                                isDestructive: true),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(
+                                                context, 'Not interested'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(
+                                                context, 'Go to post'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(
+                                                context, 'Share to...'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(
+                                                context, 'Copy link'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(context, 'Embed'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(context,
+                                                'About this account'),
+                                            const Divider(thickness: 0.5),
+                                            _buildMenuOption(context, 'Cancel',
+                                                isCancel: true),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Assets.icons.threeDots.image(width: 30),
+                              )
                             ],
                           )
                         ],
@@ -193,6 +239,26 @@ class FeedWidget extends StatelessWidget {
           thickness: 2.5,
           indent: 6,
           color: AppsTheme.color.neutral.shade400,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuOption(BuildContext context, String title,
+      {bool isDestructive = false, bool isCancel = false}) {
+    return InkWell(
+      onTap: () => Navigator.pop(context),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: isCancel || isDestructive ? FontWeight.bold : FontWeight.normal,
+            color: isDestructive ? Colors.red : Colors.black,
+          ),
         ),
       ),
     );
